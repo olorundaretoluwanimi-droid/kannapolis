@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>What Happened to Kannapolis?</title>
+<style>
+@font-face{font-family:Sans;src:url(fonts/sans400.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Sans;src:url(fonts/sans500.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Sans;src:url(fonts/sans700.woff2) format('woff2');font-weight:700}
+@font-face{font-family:Mono;src:url(fonts/mono400.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Mono;src:url(fonts/mono600.woff2) format('woff2');font-weight:600}
+@font-face{font-family:SerifI;src:url(fonts/serifi.woff2) format('woff2');font-style:italic;font-weight:400}
+html,body{margin:0;background:#15110D;overflow:hidden}canvas{display:block}
+</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// "What Happened to Kannapolis?" — Visual Investigation (house rules: warm sepia archive, big pictures, people, 47 px captions).
+// Data-driven: film.json holds every scene (type + params + t0/t1), the voice starts and the subtitles. render(t) is deterministic.
+const W = 1920, H = 1080, cv = document.getElementById('c'), x = cv.getContext('2d');
+const C = { bg:'#15110D', panel:'#221C16', line:'#3B3229', text:'#F1E7D3', dim:'#AE9F86', faint:'#62564A', acc:'#E5512F', paper:'#EADFC6', ink:'#2A2118' };
+const F = { sans:'Sans', mono:'Mono', it:'SerifI' };
+let FILM, SC = [], SUBS = [], FR = 0, REC = null; const IM = {}, CLIP = {}; let GRAIN = [];
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v)), seg = (t, a, b) => clamp((t - a) / (b - a)), lerp = (a, b, k) => a + (b - a) * k;
+const eo = k => 1 - Math.pow(1 - k, 3), eio = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+function rnd(s) { return () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function load(src) { return new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => { console.warn('missing', src); r(null); }; i.src = src; }); }
+const CLIPN = { c0: 78, c1: 53, c2: 83, c3: 78, c4: 69, c5: 48 };
+async function boot() {
+  FILM = await (await fetch('film.json')).json(); SC = FILM.scenes; SUBS = FILM.subs; window.DUR = FILM.dur;
+  const names = new Set(); SC.forEach(s => (s.type === 'pair' ? ['img', 'a', 'b'] : ['img']).forEach(k => s[k] && names.add(s[k])));
+  ['postcard_mill', 'pillowtex_2003', 'directory1953_p140', 'strike1934', 'hine_parker', 'hine_otie', 'hine_school'].forEach(n => names.add(n));
+  const L = [...names].map(n => load(`assets/${n}.jpg`).then(i => IM[n] = i));
+  for (const [c, n] of Object.entries(CLIPN)) { CLIP[c] = []; for (let i = 1; i <= n; i++) L.push(load(`assets/mill/${c}/${String(i).padStart(3, '0')}.jpg`).then(im => CLIP[c][i - 1] = im)); }
+  for (const f of ['700 40px Sans', '500 20px Sans', '400 20px Sans', '400 20px Mono', '600 20px Mono', 'italic 24px SerifI']) L.push(document.fonts.load(f));
+  await Promise.all(L);
+  for (let g = 0; g < 6; g++) { const c = document.createElement('canvas'); c.width = c.height = 256; const gx = c.getContext('2d'), d = gx.createImageData(256, 256), r = rnd(g * 99 + 7);
+    for (let i = 0; i < d.data.length; i += 4) { const v = 128 + (r() + r() + r() - 1.5) * 120; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; } gx.putImageData(d, 0, 0); GRAIN.push(c); }
+  window.READY = true;
+}
+// ── primitives ──
+function txt(s, X, Y, o = {}) {
+  x.save(); x.font = `${o.it ? 'italic ' : ''}${o.w || 400} ${o.s || 24}px ${o.f || F.sans}`; x.fillStyle = o.c || C.text; x.globalAlpha *= (o.a ?? 1);
+  x.textAlign = o.al || 'left'; x.letterSpacing = (o.ls || 0) + 'px'; if (o.sh) { x.shadowColor = 'rgba(0,0,0,.9)'; x.shadowBlur = o.sh; }
+  if (x.globalAlpha > .001) x.fillText(s, X, Y); const w = x.measureText(s).width, ga = x.globalAlpha; x.restore();
+  if (REC && o.id && ga > .5) { const sz = o.s || 24, x0 = o.al === 'right' ? X - w : o.al === 'center' ? X - w / 2 : X; REC.push({ id: o.id, text: s, x0, y0: Y - sz * .9, x1: x0 + w, y1: Y + sz * .25 }); }
+  return w;
+}
+function tw(s, o = {}) { x.save(); x.font = `${o.it ? 'italic ' : ''}${o.w || 400} ${o.s || 24}px ${o.f || F.sans}`; x.letterSpacing = (o.ls || 0) + 'px'; const w = x.measureText(s).width; x.restore(); return w; }
+function hair(x0, y0, x1, y1, c = C.line, w = 1, dash) { x.save(); x.strokeStyle = c; x.lineWidth = w; if (dash) x.setLineDash(dash); x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke(); x.restore(); }
+function rect(X, Y, w, h, c = C.line, lw = 1) { x.save(); x.strokeStyle = c; x.lineWidth = lw; x.strokeRect(X + .5, Y + .5, w - 1, h - 1); x.restore(); }
+function fill(X, Y, w, h, c) { x.fillStyle = c; x.fillRect(X, Y, w, h); }
+function shade(X, Y, w, h, a) { x.save(); x.globalAlpha *= a; fill(X, Y, w, h, C.bg); x.restore(); }
+function plate(img, sx, sy, sw, sh, X, Y, w, h, o = {}) {
+  x.save(); x.globalAlpha *= (o.a ?? 1); fill(X, Y, w, h, '#000');
+  if (img) { x.filter = o.colour ? 'sepia(.3) saturate(.8) contrast(1.05)' : 'grayscale(1) sepia(.6) contrast(1.1) brightness(.97)'; x.drawImage(img, sx, sy, sw, sh, X, Y, w, h); x.filter = 'none'; }
+  if (GRAIN.length) { x.beginPath(); x.rect(X, Y, w, h); x.clip(); x.globalCompositeOperation = 'overlay'; x.globalAlpha *= o.colour ? .12 : .2; const g = GRAIN[FR % 6];
+    for (let gy = Y; gy < Y + h; gy += 256) for (let gx = X; gx < X + w; gx += 256) x.drawImage(g, gx, gy); }
+  x.restore(); if (o.flash > 0) { x.save(); x.globalAlpha = o.flash * .9; fill(X, Y, w, h, '#fff'); x.restore(); }
+  x.save(); x.globalAlpha *= (o.a ?? 1); rect(X, Y, w, h, o.border || C.line, o.bw || 1); x.restore();
+}
+function cover(img, X, Y, w, h, o = {}, fx = .5, fy = .5, R = null, z = 1) {
+  if (!img) { plate(null, 0, 0, 1, 1, X, Y, w, h, o); return () => [X, Y]; }
+  const r0 = R || [0, 0, img.width, img.height]; let sw = r0[2], sh = sw * h / w; if (sh > r0[3]) { sh = r0[3]; sw = sh * w / h; }
+  sw /= z; sh /= z; const sx = r0[0] + (r0[2] - sw) * fx, sy = r0[1] + (r0[3] - sh) * fy; plate(img, sx, sy, sw, sh, X, Y, w, h, o); const k = w / sw;
+  return (px, py) => [X + (px - sx) * k, Y + (py - sy) * k];
+}
+function ring(cx, cy, r, k, label, side = 1, id) {
+  if (k <= 0) return; x.save(); x.strokeStyle = C.acc; x.lineWidth = 3; x.beginPath(); x.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * eo(k)); x.stroke(); x.restore();
+  if (label && k > .6) { const a = seg(k, .6, .75), lx = cx + side * r * .72, ly = cy - r * .72, ex = lx + side * 46, ey = ly - 36;
+    x.save(); x.globalAlpha *= a; hair(lx, ly, ex, ey, C.acc, 2); hair(ex, ey, ex + side * 16, ey, C.acc, 2); x.restore();
+    txt(label, ex + side * 24, ey + 9, { s: 30, w: 700, al: side > 0 ? 'left' : 'right', a, sh: 10, id }); }
+}
+function tag(s, X, Y, o = {}) { const w = txt(s, X + 14, Y, { s: 17, f: F.mono, w: 600, ls: 1, c: o.c || C.text, a: o.a ?? 1, id: o.id }); x.save(); x.globalAlpha *= o.a ?? 1; fill(X, Y - 12, 6, 13, o.chip || C.text); x.restore(); return w; }
+function dateBox(s, X, Y, a = 1) { const w = tw(s, { s: 44, f: F.mono, w: 600 }); shade(X - w - 40, Y, w + 40, 76, .86 * a); txt(s, X - 20, Y + 54, { s: 44, f: F.mono, w: 600, c: C.acc, al: 'right', a, id: 'date' + s }); }
+function nameBox(name, role, X, Y, a = 1) { const w = Math.max(tw(name, { s: 46, w: 700 }), tw(role, { s: 19, f: F.mono })) + 64; shade(X, Y, w, 116, .88 * a);
+  x.save(); x.globalAlpha *= a; fill(X + 18, Y + 16, 6, 84, C.acc); x.restore(); txt(name, X + 40, Y + 62, { s: 46, w: 700, a, id: 'nm' + name.length }); txt(role, X + 42, Y + 96, { s: 19, f: F.mono, c: C.dim, a, id: 'nr' + role.length }); }
+function flashK(t, s, d = .14) { return 1 - seg(t, s.t0, s.t0 + d); }
+const K = (t, s) => (t - s.t0) / Math.max(.01, s.t1 - s.t0);
+// ── scene types ──
+function sPhoto(t, s) {
+  const z = s.z ? lerp(s.z[0], s.z[1], eio(K(t, s))) : 1, im = IM[s.img];
+  if (s.small) { const w = Math.min(1100, im.width * 2.4), h = w * im.height / im.width, X = (W - w) / 2, Y = 60 + (860 - h) / 2;
+    cover(im, X, Y, w, h, { flash: flashK(t, s), colour: s.colour }); tag(s.tag, X, Y - 14, { id: 'tg' }); if (s.date) dateBox(s.date, X + w, Y + h - 76); return; }
+  const mp = cover(im, 60, 60, 1800, 860, { flash: flashK(t, s), colour: s.colour }, s.fx ?? .5, s.fy ?? .5, null, z);
+  tag(s.tag, 60, 46, { id: 'tg' });
+  if (s.ring) { const [px, py, r, lab, at] = s.ring, [cx, cy] = mp(px, py); const k = seg(t, s.t0 + at, s.t0 + at + .5); ring(cx, cy, r * (mp(px + 1, py)[0] - cx), k, lab, cx > 1300 ? -1 : 1, 'rg'); }
+  if (s.date) dateBox(s.date, 1860, 60, seg(t, s.t0 + .2, s.t0 + .3));
+  if (s.name) nameBox(s.name, s.role, 60, 790, seg(t, s.t0 + (s.ring ? s.ring[4] + .5 : .4), s.t0 + (s.ring ? s.ring[4] + .6 : .5)));
+}
+function sStat(t, s) {
+  const im = IM[s.img]; cover(im, 60, 60, 1120, 860, { flash: flashK(t, s), colour: s.colour }, .5, .5, null, lerp(1, 1.06, K(t, s))); tag(s.tag, 60, 46, { id: 'tg' });
+  const k = seg(t, s.t0 + (s.at || .5), s.t0 + (s.at || .5) + .06); if (k <= 0) return;
+  txt(s.num, 1230, 520, { s: s.num.length > 5 ? 150 : 190, f: F.mono, w: 600, c: C.acc, a: k, id: 'num' });
+  txt(s.label, 1236, 590, { s: 32, c: C.text, a: k, id: 'lab' });
+}
+function sCard(t, s) {
+  const im = IM[s.img];
+  if (s.portrait) { cover(im, 60, 60, 640, 860, { flash: flashK(t, s) }, .5, .3); tag(s.tag, 60, 46, { id: 'tg' });
+    const k = seg(t, s.t0 + .3, s.t0 + .4); txt(s.name, 760, 470, { s: 84, w: 700, a: k, id: 'cn' }); txt(s.line, 764, 520, { s: 24, f: F.mono, c: C.dim, a: k, id: 'cl' });
+    if (s.date) txt(s.date, 760, 680, { s: 120, f: F.mono, w: 600, c: C.acc, a: seg(t, s.t0 + .6, s.t0 + .7), id: 'cd' }); return; }
+  cover(im, 60, 60, 1800, 860, { flash: flashK(t, s), colour: !s.noportrait }, .5, .5, null, lerp(1, 1.08, K(t, s))); tag(s.tag, 60, 46, { id: 'tg' });
+  nameBox(s.name, s.line, 60, 790, seg(t, s.t0 + .4, s.t0 + .5)); if (s.date) dateBox(s.date, 1860, 60, seg(t, s.t0 + .2, s.t0 + .3));
+}
+function sWord(t, s) {
+  cover(IM[s.img], 60, 60, 1800, 860, {}, .6, .3, null, lerp(1.1, 1.2, K(t, s))); shade(60, 60, 1800, 860, .78);
+  txt(s.word, W / 2, 400, { s: 150, w: 700, al: 'center', ls: 12, id: 'w1' });
+  const k1 = seg(t, s.t0 + 2.0, s.t0 + 2.1); txt(s.a, W / 2, 540, { s: 56, f: F.it, it: 1, c: C.dim, al: 'center', a: k1, id: 'w2' });
+  const ks = eo(seg(t, s.t0 + 4.4, s.t0 + 4.9)); if (ks > 0) { const w = tw(s.a, { s: 56, f: F.it, it: 1 }); hair(W / 2 - w / 2, 522, W / 2 - w / 2 + w * ks, 522, C.acc, 4); }
+  const k2 = seg(t, s.t0 + 6.4, s.t0 + 6.5); txt(s.b, W / 2, 680, { s: 44, w: 500, al: 'center', a: k2, id: 'w3' });
+}
+function sFilm(t, s) {
+  const l = t - s.t0, per = (s.t1 - s.t0) / s.clips.length, ci = Math.min(s.clips.length - 1, Math.floor(l / per)), c = s.clips[ci], fr = CLIP[c], n = fr.length;
+  const i = Math.floor(((l - ci * per) * 15) % (2 * n - 2)), j = i < n ? i : 2 * n - 2 - i;   // ping-pong through the clip
+  const X = (W - 1146) / 2; cover(fr[j], X, 60, 1146, 860, { flash: 1 - seg(l - ci * per, 0, .12) }, .5, .5, [164, 4, 955, 712]); tag(s.tag, X, 46, { id: 'tg' });
+}
+function paperCard(X, Y, w, h) { fill(X, Y, w, h, C.paper); x.save(); x.globalAlpha = .1; x.globalCompositeOperation = 'multiply'; for (let gy = Y; gy < Y + h; gy += 256) for (let gx = X; gx < X + w; gx += 256) x.drawImage(GRAIN[FR % 6], gx, gy); x.restore(); rect(X, Y, w, h, '#c9bb9c'); }
+function sQuote(t, s) {
+  cover(IM[s.img], 60, 60, 760, 860, { flash: flashK(t, s), colour: s.colour }, .5, s.fy ?? (s.portrait ? .3 : .45), null, lerp(1.05, 1.12, K(t, s)));
+  const k = seg(t, s.t0 + .25, s.t0 + .3); x.save(); x.globalAlpha = k; paperCard(860, 60, 1000, 860); x.restore();
+  const n = s.q.length, LH = 104, y0 = 60 + (860 - (n - 1) * LH) / 2 - 20;
+  s.q.forEach((q, i) => txt(q, 920, y0 + i * LH, { s: 70, f: F.it, it: 1, c: C.ink, a: seg(t, s.t0 + .35 + i * .15, s.t0 + .45 + i * .15), id: 'q' + i }));
+  tag(s.who, 860, 950, { a: k, id: 'qw' });
+}
+function sLedger(t, s) {
+  cover(IM[s.img], 60, 60, 760, 860, { flash: flashK(t, s) }, .5, .5, null, lerp(1.1, 1.2, K(t, s))); tag('SANBORN MAP · MILL HOUSES · 1926', 60, 46, { id: 'tg' });
+  txt('ALICE CAUDLE · 1938', 900, 140, { s: 26, f: F.mono, w: 600, c: C.dim, ls: 2, id: 'lh' });
+  const at = [0.2, 3.6, 6.4].map(a => s.t0 + a * (s.t1 - s.t0) / 9.5);
+  s.items.forEach(([v, l], i) => { const k = seg(t, at[i], at[i] + .06); if (k <= 0) return; const Y = 330 + i * 230; txt(v, 900, Y, { s: 120, f: F.mono, w: 600, c: C.acc, a: k, id: 'lv' + i }); txt(l, 906, Y + 50, { s: 32, a: k, id: 'll' + i }); });
+}
+function sDoc(t, s) {
+  const im = IM[s.img];
+  if (s.wide) { const h = 1800 * im.height / im.width; cover(im, 60, 60 + (860 - h) / 2, 1800, h, { flash: flashK(t, s) }); tag(s.tag, 60, 46 + (860 - h) / 2, { id: 'tg' }); if (s.date) dateBox(s.date, 1860, 60 + (860 - h) / 2 + h + 10); return; }
+  const h = 860, w = h * im.width / im.height; cover(im, 60, 60, w, h, { flash: flashK(t, s) }); tag(s.tag, 60, 46, { id: 'tg' });
+  const X = 60 + w + 50, k = seg(t, s.t0 + 1.0, s.t0 + 1.06); x.save(); x.globalAlpha = k; paperCard(X, 60, 1860 - X, 860); x.restore();
+  txt('DAYVAULT · TRANSCRIBED FROM P. 140', X + 40, 120, { s: 18, f: F.mono, w: 600, c: '#7a6c58', a: k, id: 'dh' });
+  const R = [['Essie H (wid Gilbert W)', 'hemmer'], ['Jas H (Virginia M)', 'tex wkr'], ['Laura M Mrs', 'tmkpr'], ['Ruth C Mrs', 'spare hd'], ['Virginia M Mrs', 'tex wkr']];
+  R.forEach(([nm, job], i) => { const kk = seg(t, s.t0 + 1.4 + i * .5, s.t0 + 1.5 + i * .5); if (kk <= 0) return; const Y = 230 + i * 128, o = { s: 40, f: F.it, it: 1 };
+    const w1 = txt(nm + ' — ' + job + ' ', X + 40, Y, { ...o, c: C.ink, a: kk, id: 'dr' + i }); const w2 = tw('Cannon Mills', o);
+    x.save(); x.globalAlpha = kk; x.globalCompositeOperation = 'multiply'; x.fillStyle = 'rgba(229,81,47,0.5)'; x.fillRect(X + 40 + w1 - 4, Y - 36, (w2 + 8) * eo(seg(t, s.t0 + 1.7 + i * .5, s.t0 + 2.1 + i * .5)), 50); x.restore();
+    txt('Cannon Mills', X + 40 + w1, Y, { ...o, c: C.ink, a: kk }); });
+}
+const VOTES = [['1974', 'LOST', 0], ['1985', 'LOST', 0], ['1991', 'SET ASIDE · INTIMIDATION', 1], ['1997', 'SET ASIDE · INTIMIDATION', 1], ['1999', 'WON · ≈ 5,000 WORKERS', 2]];
+function sVotes(t, s) {
+  cover(IM.postcard_mill, 60, 60, 1800, 560, { colour: 1 }, .5, .55, null, lerp(1, 1.04, K(t, s))); tag('UNION ELECTIONS · CANNON / FIELDCREST CANNON MILLS, KANNAPOLIS', 60, 46, { id: 'vt' });
+  const X0 = 200, step = 380, Y = 760; hair(X0 - 60, Y, X0 + 4 * step + 60, Y, C.line, 2);
+  VOTES.forEach(([y, r, kind], i) => { if (i > s.upto) return; const a0 = i === s.upto && !s.hold ? s.t0 + .3 : 0, k = seg(t, a0, a0 + .1), X = X0 + i * step;
+    x.save(); x.globalAlpha = k; x.fillStyle = kind === 2 ? C.acc : C.text; x.beginPath(); x.arc(X, Y, 13, 0, 7); x.fill(); x.restore();
+    txt(y, X, Y - 36, { s: 72, f: F.mono, w: 600, c: C.acc, al: 'center', a: k, id: 'vy' + i });
+    r.split(' · ').forEach((wd, j) => txt(wd, X, Y + 66 + j * 38, { s: j ? 24 : 38, w: j ? 400 : 700, c: kind === 0 ? C.dim : C.text, al: 'center', a: k, id: 'vr' + i + j })); });
+}
+const CHAIN = [['Cannon Mills', '1887–1982', 'the Cannon family'], ['David Murdock', '1982', 'leveraged buyout · 1984: Kannapolis becomes a city'], ['Fieldcrest Cannon', 'mid-1980s', 'pension plan closed · later cut ≈ 30%'], ['Pillowtex', '1997', 'Dallas, Texas · imports rising'], ['Bankrupt', '2000–03', 'closed 30 July 2003']];
+function sChain(t, s) {
+  const im = s.upto >= 3 ? IM.pillowtex_offices : IM.postcard_kmill; cover(im, 60, 60, 820, 860, { colour: 1 }, .5, .5, null, lerp(1.0, 1.06, K(t, s)));
+  tag(s.upto >= 3 ? 'PILLOWTEX OFFICES · 2005' : 'CANNON MILLS, KANNAPOLIS · POSTCARD', 60, 46, { id: 'cimg' }); tag('WHO OWNED THE MILLS', 920, 46, { id: 'ct' });
+  CHAIN.forEach(([a, y, note], i) => { if (i > s.upto) return; const a0 = i === s.upto ? s.t0 + .3 : 0, k = seg(t, a0, a0 + .1), X = 920, Y = 60 + i * 172, w = 940, h = 150;
+    x.save(); x.globalAlpha = k; fill(X, Y, w, h, i === 4 ? 'rgba(229,81,47,.14)' : C.panel); rect(X, Y, w, h, i === 4 ? C.acc : C.line, 1.5); x.restore();
+    txt(y, X + 30, Y + 70, { s: 46, f: F.mono, w: 600, c: C.acc, a: k, id: 'cy' + i }); txt(a, X + 360, Y + 68, { s: 44, w: 700, a: k, id: 'ca' + i });
+    const kn = i === 2 ? seg(t, s.upto === 2 ? s.t0 + 4 : 0, (s.upto === 2 ? s.t0 + 4 : 0) + .1) : i === 3 && !s.imports && s.upto === 3 ? 0 : k;
+    txt(note, X + 362, Y + 112, { s: 24, c: C.dim, a: Math.min(k, kn || (i === 3 && s.upto > 3 ? 1 : kn)), id: 'cn' + i });
+    if (i > 0) hair(X + 60, Y - 22, X + 60, Y, C.dim, 2); });
+}
+function sDots(t, s) {
+  const cols = 105, rows = Math.ceil(s.n / cols), gap = 17, X0 = (W - cols * gap) / 2 + gap / 2, Y0 = 120;
+  const reveal = s.hold ? 1 : seg(t, s.t0 + .3, s.t1 - .3), fade = s.hold ? seg(t, s.t0 + .5, s.t1 - .5) : 0;
+  txt('4,340', 60, 100, { s: 56, f: F.mono, w: 600, c: C.acc, id: 'dn' }); txt('one dot for every job · 30 July 2003', 300, 96, { s: 30, c: C.dim, id: 'dl' });
+  const shown = Math.floor(reveal * s.n), r = rnd(7); x.save();
+  for (let i = 0; i < s.n; i++) { const R = r(); if (i >= shown) break; const cx = X0 + (i % cols) * gap, cy = Y0 + 40 + Math.floor(i / cols) * gap;
+    x.fillStyle = R < fade ? C.faint : C.text; x.fillRect(cx - 5, cy - 5, 10, 10); } x.restore();
+}
+function sPair(t, s) {
+  cover(IM[s.a], 60, 60, 880, 860, { flash: flashK(t, s), colour: s.a.includes('now') || s.a.includes('campus') || s.a.includes('pillowtex') }, .5, .45); tag(s.ta, 60, 46, { id: 'pa' });
+  const k = seg(t, s.t0 + 1.2, s.t0 + 1.3); if (k > 0) { cover(IM[s.b], 980, 60, 880, 860, { flash: 1 - seg(t, s.t0 + 1.2, s.t0 + 1.34), colour: s.b.includes('now') || s.b.includes('campus') }, .5, .45); tag(s.tb, 980, 46, { id: 'pb' }); }
+}
+function sChapter(t, s) {
+  cover(IM[s.img], 60, 60, 1800, 860, { colour: s.img.includes('postcard') || s.img.includes('now') || s.img.includes('pillowtex') }, .5, .5, null, lerp(1.0, 1.05, K(t, s))); shade(60, 60, 1800, 860, .66);
+  const k = seg(t, s.t0 + .2, s.t0 + .35); txt(s.num, W / 2, 430, { s: 64, f: F.mono, w: 600, c: C.acc, al: 'center', ls: 8, a: k, id: 'chn' });
+  txt(s.title, W / 2, 560, { s: 110, w: 700, al: 'center', a: seg(t, s.t0 + .4, s.t0 + .55), id: 'cht' });
+}
+function sOpen(t, s) {
+  const im = IM.pillowtex_2003, w = 1100, h = w * im.height / im.width; cover(im, 60, 60 + (860 - h) / 2, w, h, { flash: flashK(t, s, .3), colour: 1 }, .5, .5, null, lerp(1, 1.05, K(t, s)));
+  tag('PILLOWTEX SITE · KANNAPOLIS · AFTER THE CLOSING', 60, 46 + (860 - h) / 2, { id: 'tg' });
+  const k = seg(t, s.t0 + .6, s.t0 + .7); txt('WEDNESDAY', 1220, 400, { s: 40, f: F.mono, w: 600, c: C.dim, ls: 4, a: k, id: 'od1' });
+  txt('30 JULY', 1220, 520, { s: 120, f: F.mono, w: 600, c: C.acc, a: k, id: 'od2' }); txt('2003', 1220, 650, { s: 120, f: F.mono, w: 600, c: C.acc, a: k, id: 'od3' });
+}
+function sTitle(t, s) {
+  cover(IM.postcard_mill, 60, 60, 1800, 860, { flash: flashK(t, s), colour: 1 }, .5, .5, null, lerp(1, 1.08, K(t, s))); shade(60, 520, 1800, 400, .86);
+  const k = seg(t, s.t0 + .3, s.t0 + .45); txt('What Happened to Kannapolis?', 120, 680, { s: 96, w: 700, a: k, id: 'ti1' });
+  txt('THE CANNON MILLS TOWN THAT MADE AMERICA’S TOWELS', 126, 750, { s: 28, f: F.mono, c: C.dim, ls: 3, a: seg(t, s.t0 + .9, s.t0 + 1.0), id: 'ti2' });
+  x.save(); x.globalAlpha = seg(t, s.t0 + 1.4, s.t0 + 1.5); fill(126, 800, 6, 70, C.acc); x.restore();
+  txt('Kannapolis · North Carolina', 150, 848, { s: 34, w: 700, a: seg(t, s.t0 + 1.4, s.t0 + 1.5), id: 'ti3' });
+}
+function sEnd(t, s) {
+  const k = seg(t, s.t0, s.t0 + .2); txt('What Happened to Kannapolis?', 120, 300, { s: 72, w: 700, a: k, id: 'e1' });
+  txt('THE CANNON MILLS TOWN THAT MADE AMERICA’S TOWELS', 124, 356, { s: 24, f: F.mono, c: C.dim, ls: 1, a: k, id: 'e2' });
+  x.save(); x.globalAlpha = k; hair(124, 396, lerp(124, 1200, eo(seg(t, s.t0, s.t0 + .6))), 396, C.dim, 1); x.restore();
+  const k3 = seg(t, s.t0 + .5, s.t0 + .6), cr = [
+    'Photographs  Lewis W. Hine, National Child Labor Committee, 1912 (Library of Congress); National Archives (NAID 196166); Charles A. Cannon, c. 1920',
+    'Maps  Sanborn Map Company, Kannapolis, 1926 and 1943 (Library of Congress) · Document  Hill’s Kannapolis City Directory, 1953 (DPLA)',
+    'Words  Alice Caudle, interviewed by Muriel L. Wolff, 1938 — WPA Federal Writers’ Project, Library of Congress · Daily Worker, 22 Sept 1934',
+    'Film  “Filature et Tissage du coton”, France, 1920 (public domain; illustrative) · Postcards and modern photos via Wikimedia Commons (PD, CC0, CC BY 2.0)',
+    'Narration  ElevenLabs voice “Storyteller Oxley” via AI33 Pro · Music  original score; VSCO 2 CE (CC0), Salamander Grand Piano (CC BY 3.0, Alexander Holm)',
+    'Unofficial film. Dates and figures are from the sources named; where sources disagree, the film says “about”.' ];
+  cr.forEach((c, i) => txt(c, 124, 600 + i * 40, { s: 21, c: i === 5 ? C.dim : '#CDBFA6', a: k3 }));
+  x.save(); x.globalAlpha = seg(t, s.t0 + .8, s.t0 + .9); cover(IM.hine_parker, 1400, 120, 400, 300, {}, .5, .35); x.restore();
+}
+const DRAW = { photo: sPhoto, stat: sStat, card: sCard, word: sWord, film: sFilm, quote: sQuote, ledger: sLedger, doc: sDoc, votes: sVotes, chain: sChain, dots: sDots, pair: sPair, chapter: sChapter, open: sOpen, title: sTitle, end: sEnd };
+function subs(t) { for (const [a, b, s] of SUBS) if (t >= a && t < b) { x.save(); x.shadowColor = 'rgba(0,0,0,1)'; x.shadowBlur = 14; txt(s, W / 2, 1022, { s: 47, w: 500, al: 'center' }); txt(s, W / 2, 1022, { s: 47, w: 500, al: 'center' }); x.restore(); } }
+window.render = function (t) {
+  FR = Math.floor(t * 30); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = 1; fill(0, 0, W, H, C.bg);
+  let s = SC[0]; for (const c of SC) if (t >= c.t0) s = c; (DRAW[s.type] || sPhoto)(t, s);
+  if (t < FILM.dur - 1) subs(t);
+  const fi = 1 - seg(t, 0, .8), fo = seg(t, FILM.dur - 1.5, FILM.dur); if (fi > 0 || fo > 0) { x.save(); x.globalAlpha = Math.max(fi, fo); fill(0, 0, W, H, C.bg); x.restore(); }
+};
+window.TEXTS = function (t) { REC = []; window.render(t); const r = REC; REC = null; return r; };
+window.EV = [];
+boot();
+</script></body></html>

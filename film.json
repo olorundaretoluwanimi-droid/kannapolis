@@ -1,0 +1,1826 @@
+{
+"dur": 913.5,
+"scenes": [
+{
+"type": "open",
+"t0": 1.2,
+"line": "n01",
+"t1": 8.8
+},
+{
+"type": "stat",
+"img": "pillowtex_offices",
+"num": "4,340",
+"label": "jobs lost on 30 July 2003",
+"tag": "PILLOWTEX OFFICES · KANNAPOLIS · 2005",
+"at": 2.4,
+"t0": 8.8,
+"line": "n02",
+"t1": 25.21
+},
+{
+"type": "photo",
+"img": "sanborn1943_0001",
+"tag": "SANBORN MAP · KANNAPOLIS · 1943 · INDEX",
+"fy": 0.4,
+"z": [
+1.0,
+1.15
+],
+"t0": 25.21,
+"line": "n03",
+"t1": 41.92
+},
+{
+"type": "photo",
+"img": "implosion",
+"tag": "THE MILL COMES DOWN · 2006",
+"small": 1,
+"t0": 41.92,
+"line": "n04",
+"t1": 46.76
+},
+{
+"type": "title",
+"t0": 46.76,
+"line": "n05",
+"t1": 58.72
+},
+{
+"type": "chapter",
+"t0": 58.72,
+"num": "I",
+"title": "The Towel",
+"img": "postcard_mill",
+"t1": 62.92
+},
+{
+"type": "card",
+"name": "James William Cannon",
+"line": "n06",
+"img": "postcard_kmill",
+"tag": "CANNON MILLS · POSTCARD",
+"date": "1887",
+"t0": 62.92,
+"t1": 76.4
+},
+{
+"type": "photo",
+"img": "postcard_mill",
+"tag": "CANNON MILLS · POSTCARD",
+"date": "1898",
+"colour": 1,
+"z": [
+1.0,
+1.08
+],
+"t0": 76.4,
+"line": "n08",
+"t1": 87.08
+},
+{
+"type": "photo",
+"img": "postcard_kmill",
+"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD",
+"colour": 1,
+"fx": 0.6,
+"z": [
+1.08,
+1.0
+],
+"t0": 87.08,
+"line": "n09",
+"t1": 95.7
+},
+{
+"type": "photo",
+"img": "sanborn1926_0001",
+"tag": "SANBORN MAP · KANNAPOLIS · 1926",
+"date": "1906",
+"z": [
+1.0,
+1.2
+],
+"fy": 0.3,
+"t0": 95.7,
+"line": "n10",
+"t1": 106.7
+},
+{
+"type": "photo",
+"img": "sanborn1926_0002",
+"tag": "SANBORN MAP · KANNAPOLIS · 1926 · WEST AV. & S. MAIN",
+"z": [
+1.05,
+1.25
+],
+"fx": 0.7,
+"fy": 0.3,
+"t0": 106.7,
+"line": "n11",
+"t1": 118.01
+},
+{
+"type": "word",
+"word": "KANNAPOLIS",
+"a": "“city of looms”?",
+"b": "Cannon + polis (Greek: city) — “Cannon’s town”",
+"img": "sanborn1926_0002",
+"t0": 118.01,
+"line": "n12",
+"t1": 132.41
+},
+{
+"type": "photo",
+"img": "hine_school",
+"tag": "PHOTO · LEWIS W. HINE · KANNAPOLIS · 1912",
+"z": [
+1.0,
+1.08
+],
+"fy": 0.4,
+"t0": 132.41,
+"line": "n13",
+"t1": 140.48
+},
+{
+"type": "film",
+"clips": [
+"c0",
+"c1",
+"c2",
+"c3"
+],
+"tag": "FILM · “FILATURE ET TISSAGE DU COTON” · FRANCE · 1920 · ILLUSTRATIVE",
+"t0": 140.48,
+"line": "n14",
+"t1": 161.14
+},
+{
+"type": "film",
+"clips": [
+"c4",
+"c5"
+],
+"tag": "FILM · FRANCE · 1920 · ILLUSTRATIVE",
+"t0": 161.14,
+"line": "n15",
+"t1": 169.84
+},
+{
+"type": "photo",
+"img": "towel_looms",
+"tag": "TOWEL LOOMS · PHOTO, FLICKR (CC BY 2.0)",
+"colour": 1,
+"date": "1914",
+"z": [
+1.0,
+1.1
+],
+"t0": 169.84,
+"line": "n16",
+"t1": 178.8
+},
+{
+"type": "chapter",
+"t0": 178.8,
+"num": "II",
+"title": "The Children",
+"img": "hine_school",
+"t1": 183.0
+},
+{
+"type": "photo",
+"img": "hine_boys",
+"tag": "PHOTO · LEWIS W. HINE · 1912",
+"z": [
+1.0,
+1.06
+],
+"t0": 183.0,
+"line": "n17",
+"t1": 194.75
+},
+{
+"type": "photo",
+"img": "hine_boys",
+"tag": "PHOTO · LEWIS W. HINE · CANNON MILLS, CONCORD · 1912",
+"fx": 0.3,
+"z": [
+1.1,
+1.2
+],
+"t0": 194.75,
+"line": "n18",
+"t1": 206.77
+},
+{
+"type": "photo",
+"img": "hine_school",
+"tag": "PHOTO · LEWIS W. HINE · KANNAPOLIS · 1912",
+"fx": 0.4,
+"z": [
+1.15,
+1.25
+],
+"t0": 206.77,
+"line": "n19",
+"t1": 215.36
+},
+{
+"type": "photo",
+"img": "hine_parker",
+"tag": "PHOTO · LEWIS W. HINE · KANNAPOLIS · 1912",
+"ring": [
+1248,
+420,
+150,
+"HERMAN PARKER",
+0.4
+],
+"name": "Herman Parker",
+"role": "“SAID SIX YEARS OLD” · CANNON MILLS, KANNAPOLIS",
+"z": [
+1.0,
+1.12
+],
+"fy": 0.35,
+"t0": 215.36,
+"line": "n20",
+"t1": 228.27
+},
+{
+"type": "quote",
+"img": "hine_parker",
+"fy": 0.35,
+"q": [
+"“The Logical Conclusion",
+"of the Laissez Faire",
+"Policy.”"
+],
+"who": "LEWIS W. HINE · TITLE OF THE PHOTOGRAPH · 1912",
+"t0": 228.27,
+"line": "n21",
+"t1": 237.15
+},
+{
+"type": "photo",
+"img": "hine_school",
+"tag": "PHOTO · LEWIS W. HINE · PUBLIC SCHOOL, KANNAPOLIS · 1912",
+"z": [
+1.0,
+1.1
+],
+"fy": 0.6,
+"t0": 237.15,
+"line": "n22",
+"t1": 252.43
+},
+{
+"type": "photo",
+"img": "hine_otie",
+"tag": "PHOTO · LEWIS W. HINE · CANNON MILLS, CONCORD · 1912",
+"ring": [
+1200,
+540,
+120,
+"OTIE HONEYCOTT",
+3.2
+],
+"name": "“Otie Honeycott”",
+"role": "DOFFING TWO YEARS · CANNON MILL, CONCORD",
+"z": [
+1.0,
+1.1
+],
+"t0": 252.43,
+"line": "n23",
+"t1": 268.55
+},
+{
+"type": "film",
+"clips": [
+"c2",
+"c3"
+],
+"tag": "FILM · SPINNING FRAMES · FRANCE · 1920 · ILLUSTRATIVE",
+"t0": 268.55,
+"line": "n24",
+"t1": 280.59
+},
+{
+"type": "photo",
+"img": "hine_housing",
+"tag": "PHOTO · LEWIS W. HINE · WORKERS’ HOUSING, CANNON MILLS, CONCORD · 1912",
+"z": [
+1.0,
+1.08
+],
+"t0": 280.59,
+"line": "n25",
+"t1": 294.67
+},
+{
+"type": "stat",
+"img": "hine_school",
+"num": "1938",
+"label": "Fair Labor Standards Act",
+"tag": "PHOTO · LEWIS W. HINE · 1912",
+"at": 1.0,
+"t0": 294.67,
+"line": "n26",
+"t1": 305.93
+},
+{
+"type": "photo",
+"img": "hine_parker",
+"tag": "PHOTO · LEWIS W. HINE · 1912",
+"z": [
+1.12,
+1.25
+],
+"fy": 0.3,
+"t0": 305.93,
+"line": "n27",
+"t1": 316.98
+},
+{
+"type": "chapter",
+"t0": 316.98,
+"num": "III",
+"title": "The Company Town",
+"img": "sanborn1943_0006",
+"t1": 321.18
+},
+{
+"type": "card",
+"name": "Charles A. Cannon",
+"line": "n28",
+"img": "charles_cannon",
+"tag": "CHARLES A. CANNON · c. 1920",
+"date": "1921",
+"portrait": 1,
+"t0": 321.18,
+"t1": 331.18
+},
+{
+"type": "photo",
+"img": "postcard_kmill",
+"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD",
+"colour": 1,
+"date": "1928",
+"z": [
+1.0,
+1.1
+],
+"t0": 331.18,
+"line": "n29",
+"t1": 342.18
+},
+{
+"type": "photo",
+"img": "sanborn1943_0001",
+"tag": "SANBORN MAP · KANNAPOLIS · 1943 · INDEX",
+"z": [
+1.1,
+1.3
+],
+"fy": 0.45,
+"t0": 342.18,
+"line": "n30",
+"t1": 355.03
+},
+{
+"type": "photo",
+"img": "sanborn1926_0002",
+"tag": "SANBORN MAP · KANNAPOLIS · 1926",
+"date": "1926",
+"z": [
+1.0,
+1.15
+],
+"fy": 0.4,
+"t0": 355.03,
+"line": "n31",
+"t1": 371.54
+},
+{
+"type": "photo",
+"img": "sanborn1943_0006",
+"tag": "SANBORN MAP · KANNAPOLIS · 1943 · PLANT NO. 1",
+"date": "1943",
+"ring": [
+900,
+1000,
+300,
+"PLANT NO. 1",
+3.0
+],
+"z": [
+1.0,
+1.12
+],
+"fy": 0.35,
+"t0": 371.54,
+"line": "n32",
+"t1": 385.39
+},
+{
+"type": "photo",
+"img": "sanborn1926_0010",
+"tag": "SANBORN MAP · KANNAPOLIS · 1926 · MILL HOUSES",
+"z": [
+1.0,
+1.2
+],
+"fy": 0.5,
+"t0": 385.39,
+"line": "n33",
+"t1": 399.81
+},
+{
+"type": "card",
+"name": "Alice Caudle",
+"line": "n35",
+"img": "hine_otie",
+"tag": "WPA FEDERAL WRITERS’ PROJECT · 2 SEPT 1938",
+"date": "1938",
+"noportrait": 1,
+"t0": 399.81,
+"t1": 413.91
+},
+{
+"type": "stat",
+"img": "hine_boys",
+"num": "30+",
+"label": "years with the Cannon Mills",
+"tag": "PHOTO · L. W. HINE · CANNON MILLS · 1912",
+"at": 1.0,
+"t0": 413.91,
+"line": "n36",
+"t1": 423.97
+},
+{
+"type": "quote",
+"img": "hine_otie",
+"q": [
+"“I was so little",
+"I had to stand on a box",
+"to reach my work.”"
+],
+"who": "ALICE CAUDLE · WPA LIFE HISTORY · 1938",
+"t0": 423.97,
+"line": "q1",
+"t1": 431.12
+},
+{
+"type": "film",
+"clips": [
+"c3",
+"c4"
+],
+"tag": "FILM · SPINNING ROOM · FRANCE · 1920 · ILLUSTRATIVE",
+"t0": 431.12,
+"line": "n38",
+"t1": 443.32
+},
+{
+"type": "quote",
+"img": "hine_boys",
+"q": [
+"“If I’d a-been a man",
+"no telling how far",
+"I’d-a gone.”"
+],
+"who": "ALICE CAUDLE · 1938",
+"t0": 443.32,
+"line": "q2",
+"t1": 450.12
+},
+{
+"type": "ledger",
+"items": [
+[
+"7:00–3:30",
+"her shift, 1938"
+],
+[
+"$31",
+"pay for two full weeks"
+],
+[
+"$6",
+"rent a month, company house"
+]
+],
+"img": "sanborn1926_0010",
+"t0": 450.12,
+"line": "n39",
+"t1": 468.92
+},
+{
+"type": "photo",
+"img": "postcard_church",
+"tag": "KANNAPOLIS · POSTCARD",
+"colour": 1,
+"z": [
+1.0,
+1.08
+],
+"t0": 468.92,
+"line": "n40",
+"t1": 487.26
+},
+{
+"type": "card",
+"name": "Charles A. Cannon",
+"line": "n41",
+"img": "charles_cannon",
+"tag": "CHARLES A. CANNON · c. 1920",
+"portrait": 1,
+"t0": 487.26,
+"t1": 495.15
+},
+{
+"type": "quote",
+"img": "charles_cannon",
+"portrait": 1,
+"q": [
+"“He told about the way",
+"young’uns used to stand",
+"on boxes to work —",
+"the way I done.”"
+],
+"who": "ALICE CAUDLE · 1938",
+"t0": 495.15,
+"line": "q3",
+"t1": 502.81
+},
+{
+"type": "photo",
+"img": "hine_housing",
+"tag": "PHOTO · L. W. HINE · 1912",
+"z": [
+1.1,
+1.2
+],
+"fx": 0.6,
+"t0": 502.81,
+"line": "n42",
+"t1": 513.04
+},
+{
+"type": "quote",
+"img": "postcard_mill",
+"colour": 1,
+"q": [
+"“…are you right sure",
+"they’re not a-going",
+"to take hit off my pay?”"
+],
+"who": "ALICE CAUDLE · 1938",
+"t0": 513.04,
+"line": "q4",
+"t1": 526.03
+},
+{
+"type": "photo",
+"img": "hine_otie",
+"tag": "PHOTO · L. W. HINE · 1912",
+"z": [
+1.15,
+1.25
+],
+"t0": 526.03,
+"line": "n43",
+"t1": 531.75
+},
+{
+"type": "quote",
+"img": "hine_otie",
+"q": [
+"“As long as I can work",
+"and talk and laugh,",
+"I’m happy.”"
+],
+"who": "ALICE CAUDLE · 1938",
+"t0": 531.75,
+"line": "q5",
+"t1": 537.23
+},
+{
+"type": "photo",
+"img": "eleanor_ymca",
+"tag": "ELEANOR ROOSEVELT AT THE YMCA, KANNAPOLIS · NATIONAL ARCHIVES",
+"date": "1942",
+"z": [
+1.0,
+1.1
+],
+"fy": 0.35,
+"t0": 537.23,
+"line": "n44",
+"t1": 552.75
+},
+{
+"type": "doc",
+"img": "directory1953_p140",
+"tag": "HILL’S KANNAPOLIS CITY DIRECTORY · 1953 · P. 140",
+"hl": "Cannon Mills",
+"t0": 552.75,
+"line": "n45",
+"t1": 566.2
+},
+{
+"type": "chapter",
+"t0": 566.2,
+"num": "IV",
+"title": "The Vote",
+"img": "strike1934",
+"t1": 570.4
+},
+{
+"type": "photo",
+"img": "sanborn1943_0006",
+"tag": "SANBORN MAP · 1943",
+"z": [
+1.2,
+1.3
+],
+"fx": 0.6,
+"t0": 570.4,
+"line": "n46",
+"t1": 575.76
+},
+{
+"type": "doc",
+"img": "strike1934",
+"tag": "DAILY WORKER · 22 SEPTEMBER 1934",
+"wide": 1,
+"date": "1934",
+"t0": 575.76,
+"line": "n47",
+"t1": 593.18
+},
+{
+"type": "stat",
+"img": "postcard_mill",
+"colour": 1,
+"num": "65",
+"label": "years before a union won a vote",
+"tag": "CANNON MILLS · POSTCARD",
+"at": 0.5,
+"t0": 593.18,
+"line": "n48",
+"t1": 599.98
+},
+{
+"type": "votes",
+"upto": 0,
+"t0": 599.98,
+"line": "n49",
+"t1": 609.69
+},
+{
+"type": "votes",
+"upto": 1,
+"t0": 609.69,
+"line": "n50",
+"t1": 616.12
+},
+{
+"type": "votes",
+"upto": 3,
+"t0": 616.12,
+"line": "n51",
+"t1": 633.54
+},
+{
+"type": "votes",
+"upto": 4,
+"t0": 633.54,
+"line": "n52",
+"t1": 647.52
+},
+{
+"type": "votes",
+"upto": 4,
+"hold": 1,
+"t0": 647.52,
+"line": "n53",
+"t1": 656.97
+},
+{
+"type": "chapter",
+"t0": 656.97,
+"num": "V",
+"title": "Sold",
+"img": "charles_cannon",
+"t1": 661.17
+},
+{
+"type": "card",
+"name": "Charles A. Cannon",
+"line": "n55",
+"img": "charles_cannon",
+"tag": "CHARLES A. CANNON · c. 1920",
+"date": "1971",
+"portrait": 1,
+"t0": 661.17,
+"t1": 672.04
+},
+{
+"type": "photo",
+"img": "postcard_kmill",
+"tag": "CANNON MILLS · POSTCARD",
+"colour": 1,
+"z": [
+1.1,
+1.0
+],
+"t0": 672.04,
+"line": "n56",
+"t1": 681.34
+},
+{
+"type": "chain",
+"upto": 0,
+"t0": 681.34,
+"line": "n57",
+"t1": 691.42
+},
+{
+"type": "chain",
+"upto": 1,
+"t0": 691.42,
+"line": "n58",
+"t1": 708.64
+},
+{
+"type": "chain",
+"upto": 2,
+"t0": 708.64,
+"line": "n59",
+"t1": 730.03
+},
+{
+"type": "chain",
+"upto": 3,
+"t0": 730.03,
+"line": "n60",
+"t1": 740.22
+},
+{
+"type": "chain",
+"upto": 3,
+"imports": 1,
+"t0": 740.22,
+"line": "n61",
+"t1": 753.23
+},
+{
+"type": "chain",
+"upto": 4,
+"t0": 753.23,
+"line": "n62",
+"t1": 764.25
+},
+{
+"type": "chapter",
+"t0": 764.25,
+"num": "VI",
+"title": "The Last Shift",
+"img": "pillowtex_offices",
+"t1": 768.45
+},
+{
+"type": "stat",
+"img": "pillowtex_offices",
+"num": "2003",
+"label": "30 July · Pillowtex stops",
+"tag": "PILLOWTEX OFFICES · 2005",
+"at": 0.4,
+"t0": 768.45,
+"line": "n63",
+"t1": 777.02
+},
+{
+"type": "stat",
+"img": "pillowtex_offices",
+"num": "4,340",
+"label": "jobs lost in one day",
+"tag": "PILLOWTEX OFFICES · 2005",
+"at": 1.4,
+"t0": 777.02,
+"line": "n64",
+"t1": 786.97
+},
+{
+"type": "stat",
+"img": "sanborn1926_0002",
+"num": "97",
+"label": "years: 1906 → 2003",
+"tag": "SANBORN MAP · 1926",
+"at": 0.6,
+"t0": 786.97,
+"line": "n65",
+"t1": 795.65
+},
+{
+"type": "dots",
+"n": 4340,
+"t0": 795.65,
+"line": "n66",
+"t1": 799.25
+},
+{
+"type": "dots",
+"n": 4340,
+"hold": 1,
+"t0": 799.25,
+"line": "n67",
+"t1": 805.7
+},
+{
+"type": "chapter",
+"t0": 805.7,
+"num": "VII",
+"title": "What Stands There Now",
+"img": "westave_now",
+"t1": 809.9
+},
+{
+"type": "stat",
+"img": "sanborn1943_0006",
+"num": "5.8M",
+"label": "square feet · about the size of the Pentagon",
+"tag": "PLANT NO. 1 · SANBORN MAP · 1943",
+"at": 1.0,
+"t0": 809.9,
+"line": "n68",
+"t1": 819.99
+},
+{
+"type": "photo",
+"img": "implosion",
+"tag": "IMPLOSION · KANNAPOLIS · 2006",
+"small": 1,
+"date": "2006",
+"t0": 819.99,
+"line": "n69",
+"t1": 831.51
+},
+{
+"type": "photo",
+"img": "pillowtex_offices",
+"tag": "PILLOWTEX OFFICES · JULY 2005",
+"colour": 1,
+"z": [
+1.0,
+1.1
+],
+"t0": 831.51,
+"line": "n70",
+"t1": 841.17
+},
+{
+"type": "pair",
+"a": "pillowtex_offices",
+"b": "campus1",
+"ta": "THEN · PILLOWTEX OFFICES · 2005",
+"tb": "NOW · NC RESEARCH CAMPUS (CC0)",
+"t0": 841.17,
+"line": "n71",
+"t1": 849.22
+},
+{
+"type": "pair",
+"a": "sanborn1926_0002",
+"b": "westave_now",
+"ta": "1926 · WEST AV. ON THE SANBORN MAP",
+"tb": "NOW · WEST AVENUE, KANNAPOLIS (CC0)",
+"t0": 849.22,
+"line": "n72",
+"t1": 865.1
+},
+{
+"type": "photo",
+"img": "hine_school",
+"tag": "PHOTO · L. W. HINE · KANNAPOLIS · 1912",
+"z": [
+1.0,
+1.05
+],
+"t0": 865.1,
+"line": "n74",
+"t1": 868.57
+},
+{
+"type": "photo",
+"img": "postcard_mill",
+"tag": "CANNON MILLS · POSTCARD",
+"colour": 1,
+"z": [
+1.0,
+1.12
+],
+"t0": 868.57,
+"line": "n75",
+"t1": 883.93
+},
+{
+"type": "pair",
+"a": "hine_parker",
+"b": "hine_otie",
+"ta": "HERMAN PARKER · 1912",
+"tb": "CANNON MILLS, CONCORD · 1912",
+"t0": 883.93,
+"line": "n76",
+"t1": 893.57
+},
+{
+"type": "photo",
+"img": "westave_now",
+"tag": "WEST AVENUE · KANNAPOLIS · NOW (CC0)",
+"colour": 1,
+"z": [
+1.0,
+1.08
+],
+"t0": 893.57,
+"line": "n77",
+"t1": 899.53
+},
+{
+"type": "end",
+"t0": 899.53,
+"t1": 913.5
+}
+],
+"vo": {
+"n01": 1.2,
+"n02": 8.801,
+"n03": 25.206,
+"n04": 41.924,
+"n05": 46.757,
+"n06": 62.921,
+"n08": 76.4,
+"n09": 87.084,
+"n10": 95.704,
+"n11": 106.701,
+"n12": 118.012,
+"n13": 132.405,
+"n14": 140.477,
+"n15": 161.14,
+"n16": 169.839,
+"n17": 182.999,
+"n18": 194.754,
+"n19": 206.77,
+"n20": 215.364,
+"n21": 228.268,
+"n22": 237.149,
+"n23": 252.43,
+"n24": 268.547,
+"n25": 280.589,
+"n26": 294.669,
+"n27": 305.928,
+"n28": 321.178,
+"n29": 331.183,
+"n30": 342.18,
+"n31": 355.032,
+"n32": 371.541,
+"n33": 385.386,
+"n35": 399.805,
+"n36": 413.911,
+"q1": 423.968,
+"n38": 431.125,
+"q2": 443.324,
+"n39": 450.116,
+"n40": 468.924,
+"n41": 487.262,
+"q3": 495.151,
+"n42": 502.805,
+"q4": 513.045,
+"n43": 526.028,
+"q5": 531.749,
+"n44": 537.235,
+"n45": 552.752,
+"n46": 570.405,
+"n47": 575.76,
+"n48": 593.184,
+"n49": 599.976,
+"n50": 609.693,
+"n51": 616.119,
+"n52": 633.543,
+"n53": 647.518,
+"n55": 661.174,
+"n56": 672.041,
+"n57": 681.34,
+"n58": 691.423,
+"n59": 708.638,
+"n60": 730.032,
+"n61": 740.22,
+"n62": 753.229,
+"n63": 768.453,
+"n64": 777.021,
+"n65": 786.974,
+"n66": 795.646,
+"n67": 799.251,
+"n68": 809.903,
+"n69": 819.986,
+"n70": 831.506,
+"n71": 841.171,
+"n72": 849.217,
+"n74": 865.099,
+"n75": 868.573,
+"n76": 883.933,
+"n77": 893.572
+},
+"subs": [
+[
+1.1,
+4.63,
+"Kannapolis, North Carolina."
+],
+[
+4.65,
+8.2,
+"Wednesday, 30 July 2003."
+],
+[
+8.7,
+14.16,
+"That morning, the company that ran the mills here stopped."
+],
+[
+14.18,
+18.42,
+"4,340 people lost their jobs on the same day."
+],
+[
+18.44,
+24.61,
+"It was the largest single layoff in the history of the state."
+],
+[
+25.11,
+30.36,
+"For most of the century before, this town had no mayor,"
+],
+[
+30.38,
+34.77,
+"no council and no city hall. It had a company."
+],
+[
+34.79,
+41.32,
+"The company owned the mill, and the houses the workers lived in."
+],
+[
+41.82,
+46.16,
+"Three years later, the mill itself came down."
+],
+[
+46.66,
+51.49,
+"This is the story of the town that made America's towels."
+],
+[
+51.51,
+58.12,
+"Who built it, who worked in it, and what happened when the looms stopped."
+],
+[
+62.82,
+67.57,
+"It begins seven miles to the south, in Concord."
+],
+[
+67.59,
+75.8,
+"In 1887, a merchant named James William Cannon organised a cotton mill there."
+],
+[
+76.3,
+81.4,
+"In 1898, his mills switched from plain cloth to towels."
+],
+[
+81.42,
+86.48,
+"They were the first towels ever made in the South."
+],
+[
+86.98,
+90.7,
+"Towels sold. So Cannon needed a bigger mill,"
+],
+[
+90.72,
+95.1,
+"and a place to put the people who would run it."
+],
+[
+95.6,
+100.28,
+"In 1906, he bought about 800 acres of farmland,"
+],
+[
+100.3,
+106.1,
+"on the old wagon road between Salisbury and Charlotte."
+],
+[
+106.6,
+111.96,
+"On those fields he built a mill, and around the mill, a town."
+],
+[
+111.98,
+117.41,
+"He asked the county to give it a name, starting with a K."
+],
+[
+117.91,
+123.4,
+"Kannapolis. You will often hear that it means “city of looms”."
+],
+[
+123.42,
+126.33,
+"Local historians are not so sure."
+],
+[
+126.35,
+131.81,
+"The likeliest meaning is the plainest one: Cannon's town."
+],
+[
+132.31,
+134.21,
+"The mill needed hands,"
+],
+[
+134.23,
+139.88,
+"and the hands came from the farms, whole families at a time."
+],
+[
+140.38,
+147.63,
+"The machines were the same in every mill. Cotton went in at one end, as bales."
+],
+[
+147.65,
+152.76,
+"It was opened, cleaned, combed into ribbons, drawn out,"
+],
+[
+152.78,
+160.54,
+"twisted into thread on spinning frames, wound onto bobbins, and woven on looms."
+],
+[
+161.04,
+166.12,
+"In Kannapolis, almost all of it became one thing."
+],
+[
+166.14,
+169.24,
+"Towels. And later, sheets."
+],
+[
+169.74,
+178.2,
+"By 1914, Cannon was making more towels and sheets than any company in the world."
+],
+[
+182.9,
+191.18,
+"In 1912, a photographer came to Kannapolis with a heavy camera and a notebook."
+],
+[
+191.2,
+194.15,
+"His name was Lewis Hine."
+],
+[
+194.65,
+198.83,
+"Hine worked for the National Child Labor Committee."
+],
+[
+198.85,
+206.17,
+"His job was to prove, with pictures, what children were doing in American factories."
+],
+[
+206.67,
+209.97,
+"He wrote down what the children told him."
+],
+[
+209.99,
+214.76,
+"Their names, their ages, and how long they had worked."
+],
+[
+215.26,
+219.12,
+"This is Herman Parker. Hine's caption says:"
+],
+[
+219.14,
+223.01,
+"“said six years old, and he and others said"
+],
+[
+223.03,
+227.67,
+"he had worked in the Cannon Mills, Kannapolis.”"
+],
+[
+228.17,
+231.63,
+"Hine gave the picture a title of his own:"
+],
+[
+231.65,
+236.55,
+"“The logical conclusion of the laissez-faire policy.”"
+],
+[
+237.05,
+242.77,
+"Outside the public school in Kannapolis, he photographed a group of children."
+],
+[
+242.79,
+248.35,
+"Every one of them, he wrote, said he or she had worked in the cotton mills."
+],
+[
+248.37,
+251.83,
+"The two smallest boys said they were ten."
+],
+[
+252.33,
+255.62,
+"In Concord, at the Cannon mill there,"
+],
+[
+255.64,
+260.19,
+"he met a boy whose mother could not spell his name."
+],
+[
+260.21,
+267.95,
+"Hine wrote it down as Otie Honeycott. Otie said he had been doffing for two years."
+],
+[
+268.45,
+274.0,
+"Doffing meant pulling the full bobbins off the spinning frames"
+],
+[
+274.02,
+279.99,
+"and putting empty ones on. It was quick work, for small hands."
+],
+[
+280.49,
+282.85,
+"And Hine photographed the houses."
+],
+[
+282.87,
+287.02,
+"“Some of the housing conditions of the workers,” he wrote,"
+],
+[
+287.04,
+294.07,
+"“to contrast with the homes and gardens sometimes shown from the ‘show mills’ of the state.”"
+],
+[
+294.57,
+300.49,
+"It would take a federal law, the Fair Labor Standards Act of 1938,"
+],
+[
+300.51,
+305.33,
+"to keep young children out of the mills for good."
+],
+[
+305.83,
+309.35,
+"We do not know what became of Herman Parker."
+],
+[
+309.37,
+316.38,
+"But we know what one child of the Cannon mills remembered, twenty-six years later."
+],
+[
+321.08,
+327.7,
+"In 1921, James Cannon died. His son Charles took over."
+],
+[
+327.72,
+330.58,
+"He was twenty-eight."
+],
+[
+331.08,
+339.08,
+"In 1928, Charles Cannon brought nine of the family's companies together into one:"
+],
+[
+339.1,
+341.58,
+"Cannon Mills Company."
+],
+[
+342.08,
+348.95,
+"Under him, Kannapolis grew into one of the largest unincorporated towns in America."
+],
+[
+348.97,
+354.43,
+"There was no city government. The company was the government."
+],
+[
+354.93,
+361.55,
+"The fire insurance maps show it. Here is Kannapolis in 1926."
+],
+[
+361.57,
+370.94,
+"The mill, the railroad, and rows of small, identical houses, numbered like parts."
+],
+[
+371.44,
+376.48,
+"And here it is in 1943. The same streets, filled in."
+],
+[
+376.5,
+384.79,
+"Plant No. 1 has spread across the map, and the houses run out in every direction."
+],
+[
+385.29,
+388.53,
+"The company built the houses, owned them,"
+],
+[
+388.55,
+392.74,
+"and rented them to the people who worked in the mill."
+],
+[
+392.76,
+399.21,
+"It built the YMCA, and gave the land and the buildings for much of the rest."
+],
+[
+399.7,
+406.62,
+"In September 1938, a writer for the government's Federal Writers' Project"
+],
+[
+406.64,
+413.31,
+"sat on a front porch in Concord with a spinner named Alice Caudle."
+],
+[
+413.81,
+420.41,
+"Alice was forty-seven. She had worked for the Cannon Mills for more than thirty years."
+],
+[
+420.43,
+423.37,
+"She told the writer how it began."
+],
+[
+423.87,
+430.53,
+"“I was so little I had to stand on a box to reach my work.”"
+],
+[
+431.02,
+438.8,
+"She was ten. She learned spinning, then spooling, then the new winding machines."
+],
+[
+438.82,
+442.72,
+"She was good at it, and she knew it."
+],
+[
+443.22,
+449.52,
+"“If I'd a-been a man no telling how far I'd-a gone.”"
+],
+[
+450.02,
+457.8,
+"In 1938, her shift ran from seven in the morning to half past three."
+],
+[
+457.82,
+462.97,
+"For two full weeks of work, she was paid $31."
+],
+[
+462.99,
+468.32,
+"The rent on a company house was $6 a month."
+],
+[
+468.82,
+473.1,
+"That spring, the company held a supper in Kannapolis"
+],
+[
+473.12,
+479.63,
+"for everyone who had worked twenty-five years or more. A car came to fetch her."
+],
+[
+479.65,
+486.66,
+"There was turkey, and white tablecloths finished at the company's own bleachery."
+],
+[
+487.16,
+491.44,
+"Charles Cannon made a speech, and gave out pins."
+],
+[
+491.46,
+494.55,
+"Alice remembered what he said."
+],
+[
+495.05,
+502.21,
+"“He told about the way young'uns used to stand on boxes to work — the way I done.”"
+],
+[
+502.7,
+508.45,
+"When the office first called her in about it, she thought she was going to be fired."
+],
+[
+508.47,
+512.44,
+"When they handed her the ticket, she had a question."
+],
+[
+512.94,
+520.1,
+"“In all these thirty years this is the first time the Cannon Mill ever offered me anything —"
+],
+[
+520.12,
+525.43,
+"are you right sure they're not a-going to take hit off my pay?”"
+],
+[
+525.93,
+531.15,
+"And at the end, sitting on the porch, she said this."
+],
+[
+531.65,
+536.63,
+"“As long as I can work and talk and laugh, I'm happy.”"
+],
+[
+537.13,
+540.4,
+"In August 1942, the First Lady came."
+],
+[
+540.42,
+548.63,
+"Eleanor Roosevelt asked to see what Cannon Mills provided for the people who worked there,"
+],
+[
+548.65,
+552.15,
+"and toured the YMCA in Kannapolis."
+],
+[
+552.65,
+557.78,
+"By the 1940s, the town had its own city directory."
+],
+[
+557.8,
+565.6,
+"Page after page of names. And beside so many of them, the same employer."
+],
+[
+570.3,
+575.16,
+"A company town is a quiet town, until it isn't."
+],
+[
+575.66,
+581.8,
+"In September 1934, textile workers across the South walked out,"
+],
+[
+581.82,
+586.59,
+"in the largest strike the industry had ever seen."
+],
+[
+586.61,
+592.58,
+"Mills were picketed. In some places, troops were sent in."
+],
+[
+593.08,
+599.38,
+"In Kannapolis, it would be sixty-five years before a union won a vote."
+],
+[
+599.88,
+606.91,
+"In 1974, Cannon workers voted on a union for the first time."
+],
+[
+606.93,
+609.09,
+"The union lost."
+],
+[
+609.59,
+615.52,
+"In 1985, they voted again. It lost again."
+],
+[
+616.02,
+620.54,
+"In 1991, and in 1997, there were more votes."
+],
+[
+620.56,
+626.53,
+"Both times, federal labor officials threw the results out,"
+],
+[
+626.55,
+632.94,
+"finding that the company had intimidated union supporters."
+],
+[
+633.44,
+638.5,
+"Then, in June 1999, after twenty-five years of trying,"
+],
+[
+638.52,
+646.92,
+"the workers of the Kannapolis mills voted the union in. Around five thousand of them."
+],
+[
+647.42,
+654.33,
+"It was called the greatest union victory in the history of southern textiles."
+],
+[
+654.35,
+656.37,
+"It came very late."
+],
+[
+661.07,
+664.31,
+"Charles Cannon died in April 1971."
+],
+[
+664.33,
+671.44,
+"For fifty years, he had run the mills, and the town, like a household."
+],
+[
+671.94,
+677.26,
+"Without him, the company was a large business like any other."
+],
+[
+677.28,
+680.74,
+"And large businesses can be bought."
+],
+[
+681.24,
+688.38,
+"In 1982, a California investor named David Murdock bought Cannon Mills,"
+],
+[
+688.4,
+690.82,
+"with borrowed money."
+],
+[
+691.32,
+696.68,
+"Two years later, in 1984, Kannapolis finally became a city,"
+],
+[
+696.7,
+700.14,
+"with a mayor and a council of its own."
+],
+[
+700.16,
+708.04,
+"Until then, it had been the largest unincorporated community in the United States."
+],
+[
+708.54,
+712.51,
+"Murdock soon sold the mills on, to Fieldcrest."
+],
+[
+712.53,
+721.11,
+"The workers' pension plan was closed, and its money moved into annuities with an insurance company."
+],
+[
+721.13,
+729.43,
+"When that insurer later failed, retired mill workers saw their pensions cut, by around 30%."
+],
+[
+729.93,
+735.12,
+"Fieldcrest Cannon was bought in turn, in 1997,"
+],
+[
+735.14,
+739.62,
+"by a Texas company called Pillowtex."
+],
+[
+740.12,
+744.64,
+"Meanwhile, towels were being made more cheaply abroad."
+],
+[
+744.66,
+752.63,
+"Year by year, more of the towels and sheets on American shelves came from other countries."
+],
+[
+753.13,
+757.09,
+"In 2000, Pillowtex went bankrupt."
+],
+[
+757.11,
+763.65,
+"It came out of bankruptcy in 2002. It did not last."
+],
+[
+768.35,
+776.42,
+"On 30 July 2003, Pillowtex ran out of money, and stopped."
+],
+[
+776.92,
+782.2,
+"In Kannapolis and the counties around it,"
+],
+[
+782.22,
+786.37,
+"4,340 people lost their jobs."
+],
+[
+786.87,
+791.19,
+"It was ninety-seven years since the first mill houses"
+],
+[
+791.21,
+795.05,
+"went up on the farmland by the wagon road."
+],
+[
+795.55,
+798.65,
+"One dot for every job."
+],
+[
+799.15,
+805.1,
+"That was the day the town that made America's towels made its last one."
+],
+[
+809.8,
+815.73,
+"Plant No. 1 was enormous. Nearly six million square feet."
+],
+[
+815.75,
+819.39,
+"About the size of the Pentagon."
+],
+[
+819.89,
+822.6,
+"In 2005, the wreckers came."
+],
+[
+822.62,
+830.91,
+"In 2006, the last buildings and smokestacks were brought down with explosives."
+],
+[
+831.41,
+838.76,
+"The buyer of the land was the same man who had bought the company in 1982:"
+],
+[
+838.78,
+840.57,
+"David Murdock."
+],
+[
+841.07,
+845.22,
+"Where the mill stood, he built a research campus,"
+],
+[
+845.24,
+848.62,
+"for the science of food and health."
+],
+[
+849.12,
+854.85,
+"The old street names are still there. West Avenue. Main Street."
+],
+[
+854.87,
+859.6,
+"And the town has a council, a mayor and a city hall."
+],
+[
+859.62,
+864.5,
+"The things it waited nearly eighty years to have."
+],
+[
+865.0,
+867.97,
+"So what happened to Kannapolis?"
+],
+[
+868.47,
+871.64,
+"A family built a town around a towel."
+],
+[
+871.66,
+879.81,
+"For almost a century, the town gave the mill its children, its parents, its whole working life."
+],
+[
+879.83,
+883.33,
+"When the mill went, the town stayed."
+],
+[
+883.83,
+888.62,
+"Herman Parker was six. Alice Caudle was ten."
+],
+[
+888.64,
+892.97,
+"The last workers walked out in 2003."
+],
+[
+893.47,
+898.33,
+"The looms are gone. The town is still here."
+]
+]
+}

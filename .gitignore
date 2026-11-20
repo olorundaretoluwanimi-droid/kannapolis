@@ -1,0 +1,8 @@
+out/
+stills/
+raw/
+voice-test/
+audio/vo/*.wav
+audio/vo/*.download
+*.mp4
+__pycache__/
