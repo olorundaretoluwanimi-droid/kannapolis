@@ -79,7 +79,7 @@ S = {
  'n70': P('pillowtex_offices', tag='PILLOWTEX OFFICES · JULY 2005', colour=1, z=(1.0, 1.1)),
  'n71': dict(type='pair', a='pillowtex_offices', b='campus1', ta='THEN · PILLOWTEX OFFICES · 2005', tb='NOW · NC RESEARCH CAMPUS (CC0)'),
  'n72': dict(type='pair', a='sanborn1926_0002', b='westave_now', ta='1926 · WEST AV. ON THE SANBORN MAP', tb='NOW · WEST AVENUE, KANNAPOLIS (CC0)'),
- 'n74': P('hine_school', tag='PHOTO · L. W. HINE · KANNAPOLIS · 1912', z=(1.0, 1.05)),
+ 'n74': P('hine_school', tag='L. W. HINE · 1912', z=(1.0, 1.05)),
  'n75': P('postcard_mill', tag='CANNON MILLS · POSTCARD', colour=1, z=(1.0, 1.12)),
  'n76': dict(type='pair', a='hine_parker', b='hine_otie', ta='HERMAN PARKER · 1912', tb='CANNON MILLS, CONCORD · 1912'),
  'n77': P('westave_now', tag='WEST AVENUE · KANNAPOLIS · NOW (CC0)', colour=1, z=(1.0, 1.08)),
