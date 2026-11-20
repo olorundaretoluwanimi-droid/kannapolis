@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       start: { description: 'Start second', default: '0' }
-      end: { description: 'End second (913.5 = whole film)', default: '913.5' }
+      end: { description: 'End second (913.7 = whole film)', default: '913.7' }
       parts: { description: 'Parallel render jobs (max 20 on free plans)', default: '20' }
       fps: { description: 'Frames per second', default: '30' }
 
