@@ -177,6 +177,7 @@ function sPair(t, s) {
 }
 function sChapter(t, s) {
   cover(IM[s.img], 60, 60, 1800, 860, { colour: s.img.includes('postcard') || s.img.includes('now') || s.img.includes('pillowtex') }, .5, .5, null, lerp(1.0, 1.05, K(t, s))); shade(60, 60, 1800, 860, .66);
+  if (s.tag) tag(s.tag, 60, 46, { id: 'tg' });
   const k = seg(t, s.t0 + .2, s.t0 + .35); txt(s.num, W / 2, 430, { s: 64, f: F.mono, w: 600, c: C.acc, al: 'center', ls: 8, a: k, id: 'chn' });
   txt(s.title, W / 2, 560, { s: 110, w: 700, al: 'center', a: seg(t, s.t0 + .4, s.t0 + .55), id: 'cht' });
 }
@@ -201,7 +202,8 @@ function sEnd(t, s) {
     'Photographs  Lewis W. Hine, National Child Labor Committee, 1912 (Library of Congress); National Archives (NAID 196166); Charles A. Cannon, c. 1920',
     'Maps  Sanborn Map Company, Kannapolis, 1926 and 1943 (Library of Congress) · Document  Hill’s Kannapolis City Directory, 1953 (DPLA)',
     'Words  Alice Caudle, interviewed by Muriel L. Wolff, 1938 — WPA Federal Writers’ Project, Library of Congress · Daily Worker, 22 Sept 1934',
-    'Film  “Filature et Tissage du coton”, France, 1920 (public domain; illustrative) · Postcards and modern photos via Wikimedia Commons (PD, CC0, CC BY 2.0)',
+    'Film  “Filature et Tissage du coton”, France, 1920 (public domain; illustrative) · Other photos via Wikimedia Commons (public domain, CC0)',
+    'Postcards  Tichnor Bros., c. 1930–45, Boston Public Library (CC BY 2.0) · Towel looms, Brisbane, 2014  darkday (CC BY 2.0; illustrative)',
     'Music  original score; VSCO 2 CE (CC0), Salamander Grand Piano (CC BY 3.0, Alexander Holm)' ];
   cr.forEach((c, i) => txt(c, 124, 600 + i * 40, { s: 21, c: '#CDBFA6', a: k3 }));
   x.save(); x.globalAlpha = seg(t, s.t0 + .8, s.t0 + .9); cover(IM.hine_parker, 1400, 120, 400, 300, {}, .5, .35); x.restore();

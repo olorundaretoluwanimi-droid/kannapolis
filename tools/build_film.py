@@ -12,6 +12,7 @@ CH = {'open': (None, None), 'towel': ('I', 'The Towel'), 'children': ('II', 'The
       'vote': ('IV', 'The Vote'), 'sold': ('V', 'Sold'), 'last': ('VI', 'The Last Shift'), 'now': ('VII', 'What Stands There Now')}
 CHIMG = {'towel': 'towel_looms', 'children': 'hine_school', 'town': 'sanborn1943_0006', 'vote': 'strike1934', 'sold': 'charles_cannon',
          'last': 'pillowtex_offices', 'now': 'westave_now'}
+CHTAG = {'towel': 'TOWEL LOOMS · BRISBANE, AUSTRALIA · 2014 · PHOTO: DARKDAY (CC BY 2.0) · ILLUSTRATIVE'}   # chapter-card photo that isn't Kannapolis: say so on screen
 
 # shot per line: type + params. Rings: [src_x, src_y, r, label, at (s after line start)].
 P = lambda img, **k: dict(type='photo', img=img, **k)
@@ -22,8 +23,8 @@ S = {
  'n04': P('implosion', tag='THE MILL COMES DOWN · 2006', small=1),
  'n05': dict(type='title'),
  'n06': dict(type='film', clips=['c0', 'c1'], tag='FILM · OPENING AND COMBING COTTON · FRANCE · 1920 · ILLUSTRATIVE', name='James William Cannon', role='1852–1921 · MERCHANT, MILL BUILDER', date='1887'),
- 'n08': P('towel_looms', tag='TOWEL LOOMS · MODERN PHOTO, FLICKR (CC BY 2.0) · ILLUSTRATIVE', colour=1, date='1898', z=(1.0, 1.1)),
- 'n09': P('postcard_kmill', tag='CANNON MILLS, KANNAPOLIS · POSTCARD', colour=1, fx=.6, z=(1.08, 1.0)),
+ 'n08': P('towel_looms', tag='TOWEL LOOMS · BRISBANE, AUSTRALIA · 2014 · PHOTO: DARKDAY (CC BY 2.0) · ILLUSTRATIVE', colour=1, date='1898', z=(1.0, 1.1)),
+ 'n09': P('postcard_kmill', tag='CANNON MILLS, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)', colour=1, fx=.6, z=(1.08, 1.0)),
  'n10': P('sanborn1926_0001', tag='SANBORN MAP · KANNAPOLIS · 1926', date='1906', z=(1.0, 1.2), fy=.3),
  'n11': P('sanborn1926_0002', tag='SANBORN MAP · KANNAPOLIS · 1926 · WEST AV. & S. MAIN', z=(1.05, 1.25), fx=.7, fy=.3),
  'n12': dict(type='word', word='KANNAPOLIS', a='“city of looms”?', b='Cannon + polis (Greek: city) — “Cannon’s town”', img='sanborn1926_0002'),
@@ -43,7 +44,7 @@ S = {
  'n26': dict(type='stat', img='hine_school', num='1938', label='Fair Labor Standards Act', tag='PHOTO · LEWIS W. HINE · 1912', at=1.0),
  'n27': P('hine_parker', tag='PHOTO · LEWIS W. HINE · 1912', z=(1.12, 1.25), fy=.3),
  'n28': dict(type='card', name='Charles A. Cannon', line='1892–1971 · TOOK OVER IN 1921', img='charles_cannon', tag='CHARLES A. CANNON · c. 1920', date='1921', portrait=1),
- 'n29': P('postcard_kmill', tag='CANNON MILLS, KANNAPOLIS · POSTCARD', colour=1, date='1928', z=(1.0, 1.1)),
+ 'n29': P('postcard_kmill', tag='CANNON MILLS, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)', colour=1, date='1928', z=(1.0, 1.1)),
  'n30': P('sanborn1943_0001', tag='SANBORN MAP · KANNAPOLIS · 1943 · INDEX', z=(1.1, 1.3), fy=.45),
  'n31': P('sanborn1926_0002', tag='SANBORN MAP · KANNAPOLIS · 1926', date='1926', z=(1.0, 1.15), fy=.4),
  'n32': P('sanborn1943_0006', tag='SANBORN MAP · KANNAPOLIS · 1943 · PLANT NO. 1', date='1943', ring=[900, 1000, 300, 'PLANT NO. 1', 3.0], z=(1.0, 1.12), fy=.35),
@@ -54,7 +55,7 @@ S = {
  'n38': dict(type='film', clips=['c3', 'c4'], tag='FILM · SPINNING ROOM · FRANCE · 1920 · ILLUSTRATIVE'),
  'q2': dict(type='quote', img='hine_boys', imgTag='L. W. HINE · 1912 · BOYS AT THE CANNON MILLS, CONCORD', q=['“If I’d a-been a man', 'no telling how far', 'I’d-a gone.”'], who='ALICE CAUDLE · 1938'),
  'n39': dict(type='ledger', items=[['7:00–3:30', 'her shift, 1938'], ['$31', 'pay for two full weeks'], ['$6', 'rent a month, company house']], img='sanborn1926_0010'),
- 'n40': P('postcard_church', tag='KANNAPOLIS · POSTCARD', colour=1, z=(1.0, 1.08)),
+ 'n40': P('postcard_church', tag='FIRST PRESBYTERIAN CHURCH, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)', colour=1, z=(1.0, 1.08)),
  'n41': dict(type='card', name='Charles A. Cannon', line='THE 25-YEAR SUPPER · 1938', img='charles_cannon', tag='CHARLES A. CANNON · c. 1920', portrait=1),
  'q3': dict(type='quote', img='charles_cannon', portrait=1, imgTag='CHARLES A. CANNON · c. 1920', q=['“He told about the way', 'young’uns used to stand', 'on boxes to work —', 'the way I done.”'], who='ALICE CAUDLE · 1938'),
  'n42': P('hine_housing', tag='PHOTO · L. W. HINE · 1912', z=(1.1, 1.2), fx=.6),
@@ -68,7 +69,7 @@ S = {
  'n48': dict(type='stat', img='postcard_mill', colour=1, num='65', label='years before a union won a vote', tag='CANNON MILLS · POSTCARD', at=0.5),
  'n49': dict(type='votes', upto=0), 'n50': dict(type='votes', upto=1), 'n51': dict(type='votes', upto=3), 'n52': dict(type='votes', upto=4), 'n53': dict(type='votes', upto=4, hold=1),
  'n55': dict(type='card', name='Charles A. Cannon', line='DIED APRIL 1971', img='charles_cannon', tag='CHARLES A. CANNON · c. 1920', date='1971', portrait=1),
- 'n56': P('postcard_kmill', tag='CANNON MILLS · POSTCARD', colour=1, z=(1.1, 1.0)),
+ 'n56': P('postcard_kmill', tag='CANNON MILLS, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)', colour=1, z=(1.1, 1.0)),
  'n57': dict(type='chain', upto=0), 'n58': dict(type='chain', upto=1), 'n59': dict(type='chain', upto=2), 'n60': dict(type='chain', upto=3), 'n61': dict(type='chain', upto=3, imports=1), 'n62': dict(type='chain', upto=4),
  'n63': dict(type='stat', img='pillowtex_offices', num='2003', label='30 July · Pillowtex stops', tag='PILLOWTEX OFFICES · 2005', at=0.4),
  'n64': dict(type='stat', img='pillowtex_offices', num='4,340', label='jobs lost in one day', tag='PILLOWTEX OFFICES · 2005', at=1.4),
@@ -88,7 +89,7 @@ scenes, vo, subs, t, prev = [], {}, [], LEAD, None
 for l in L:
     ch = l['chapter']
     if ch != prev and CH[ch][0]:
-        scenes.append(dict(type='chapter', t0=round(t, 2), num=CH[ch][0], title=CH[ch][1], img=CHIMG[ch])); t += CARD
+        scenes.append(dict(type='chapter', t0=round(t, 2), num=CH[ch][0], title=CH[ch][1], img=CHIMG[ch], **({'tag': CHTAG[ch]} if ch in CHTAG else {}))); t += CARD
     prev = ch; d = DUR[l['id']]
     sh = dict(S[l['id']]); sh['t0'] = round(t, 2); sh['line'] = l['id']; scenes.append(sh)
     vo[l['id']] = round(t, 3)

@@ -52,6 +52,7 @@
 "num": "I",
 "title": "The Towel",
 "img": "towel_looms",
+"tag": "TOWEL LOOMS · BRISBANE, AUSTRALIA · 2014 · PHOTO: DARKDAY (CC BY 2.0) · ILLUSTRATIVE",
 "t1": 62.92
 },
 {
@@ -71,7 +72,7 @@
 {
 "type": "photo",
 "img": "towel_looms",
-"tag": "TOWEL LOOMS · MODERN PHOTO, FLICKR (CC BY 2.0) · ILLUSTRATIVE",
+"tag": "TOWEL LOOMS · BRISBANE, AUSTRALIA · 2014 · PHOTO: DARKDAY (CC BY 2.0) · ILLUSTRATIVE",
 "colour": 1,
 "date": "1898",
 "z": [
@@ -85,7 +86,7 @@
 {
 "type": "photo",
 "img": "postcard_kmill",
-"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD",
+"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)",
 "colour": 1,
 "fx": 0.6,
 "z": [
@@ -373,7 +374,7 @@
 {
 "type": "photo",
 "img": "postcard_kmill",
-"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD",
+"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)",
 "colour": 1,
 "date": "1928",
 "z": [
@@ -536,7 +537,7 @@
 {
 "type": "photo",
 "img": "postcard_church",
-"tag": "KANNAPOLIS · POSTCARD",
+"tag": "FIRST PRESBYTERIAN CHURCH, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)",
 "colour": 1,
 "z": [
 1.0,
@@ -750,7 +751,7 @@
 {
 "type": "photo",
 "img": "postcard_kmill",
-"tag": "CANNON MILLS · POSTCARD",
+"tag": "CANNON MILLS, KANNAPOLIS · POSTCARD · BOSTON PUBLIC LIBRARY (CC BY 2.0)",
 "colour": 1,
 "z": [
 1.1,
